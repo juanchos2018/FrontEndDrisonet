@@ -10,13 +10,9 @@
                   rows="3"
                   max-rows="6"
                 ></b-form-textarea>
-            </b-form-group>                       
-          
-   </div>
+            </b-form-group>    
 
-   <div class="form-row" >
-     
-          <b-form-group  class="col-md-6">
+              <b-form-group  class="col-md-6">
               <label class="control-label font-weight-bold text-info">Imagen </label> <br>
               <input type="file" id="files" ref="files" multiple v-on:change="handleFileUploads"/>
                       <div id="preview">
@@ -26,11 +22,18 @@
 
               <b-overlay :show="show"  no-wrap>      
              </b-overlay>
+                   
+          
+   </div>
 
-  
+   <div class="form-row" >
+     
    </div> 
-    <b-button variant="primary" :disabled="show"   @click="upload">Subir</b-button>     
+   <div class="footer">
+        <b-button variant="primary"  style="display: inline-block;" :disabled="show"   @click="upload">Subir</b-button>     
  
+   </div>
+   
     </div>
 </template>
 

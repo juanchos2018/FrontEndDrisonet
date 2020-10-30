@@ -1,5 +1,51 @@
 <template>
   <div class="auth-page">
+    <img class="wave" src="../../assets/wabe2.png">
+	<div class="container" >
+		
+		<div class="img">
+			<img src="../../assets/bg2.svg">
+		</div>
+		<div class="login-content">
+			<form class="mt" @submit.prevent="submit">
+				<img src="../../assets/avatar.svg">
+				<h2 class="title">Bienvenido</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+						  
+           		   		<input ref="email" required type="text" name="email"  placeholder="Correo" >
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    		<input  ref="password" required type="password" name="password"   placeholder="Contraseña">
+           		    
+            	   </div>
+            	</div>
+            	
+            	  <b-button  type="submit"  style="  padding: 10px 10px 10px;
+                            
+                                border-radius: 4px;
+                                font-size: 17px;
+                                font-weight: bold;
+                                line-height: 20px;                             
+                            
+                                margin-bottom: 24px;"
+                                >Ingresar</b-button>
+                                 <b-button type="button" @click="Registrar"> Registrar</b-button>
+            </form>
+
+           
+        </div>
+    </div>
+
+<!--
     <b-container>
       <h5 class="auth-logo">
         <i class="fa fa-circle text-primary"></i>
@@ -10,7 +56,7 @@
         <p class="widget-auth-info">
             Use your email to sign in.
         </p>
-        <form class="mt" @submit.prevent="login">
+        <form class="mt" @submit.prevent="submit">
           <b-alert class="alert-sm" variant="danger" :show="!!errorMessage">
             {{errorMessage}}
           </b-alert>
@@ -39,15 +85,13 @@
         <router-link class="d-block text-center" to="login">Create an Account</router-link>
       </Widget>
     </b-container>
-    <footer class="auth-footer">
-      2019 &copy; Sing App Vue Admin Dashboard Template.
-    </footer>
+   -->
   </div>
 </template>
 
 <script>
 import Widget from '@/components/Widget/Widget';
-
+import firebase from '@/firebase'
 export default {
   name: 'LoginPage',
   components: { Widget },
@@ -57,6 +101,39 @@ export default {
     };
   },
   methods: {
+
+    Registrar()
+    {
+       this.$router.push('/registro')
+    },
+submit(){
+  firebase
+        .auth()
+        .signInWithEmailAndPassword(this.$refs.email.value,this.$refs.password.value)
+        .then(data => {
+         // this.$router.replace({ name: "Dashboard" });
+         console.log(data);
+         var verificado=data.user.emailVerified;
+         var id =data.user.uid;
+              if(verificado){
+                   window.localStorage.setItem('authenticated', true);
+                   this.$router.push('/app/inicio').catch(err => {
+              
+                  if (
+                    err.name !== 'NavigationDuplicated' &&
+                    !err.message.includes('Avoided redundant navigation to current location')
+                  ) {
+                    console(err);
+                  }
+              });
+              }          
+
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
+  },
+
     login() {
       const email = this.$refs.email.value;
       const password = this.$refs.password.value;
@@ -69,7 +146,7 @@ export default {
               err.name !== 'NavigationDuplicated' &&
               !err.message.includes('Avoided redundant navigation to current location')
             ) {
-              // But print any other errors to the console
+              
               console(err);
             }
           });
@@ -93,3 +170,4 @@ export default {
   },
 };
 </script>
+<style src="./stilo.scss" scoped lang="scss"></style>

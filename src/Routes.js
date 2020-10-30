@@ -9,8 +9,6 @@ import ErrorPage from '@/pages/Error/Error';
 import AnalyticsPage from '@/pages/Dashboard/Dashboard';
 
 
-import Comprobante from '@/pages/Comprobante/Comprobante';
-import ComprobanteLista from '@/pages/Comprobante/ComprobanteLista';
 import Preventa from '@/pages/Preventa/Preventa';
 import PreventaLista from '@/pages/Preventa/PreventaLista'
 //Articulo
@@ -18,13 +16,16 @@ import Articulo from '@/pages/Articulo/Articulo';
 import Cliente from '@/pages/Cliente/Cliente';
 import Pacientes from '@/pages/Pacientes/Pacientes';
 import PacienteChat from '@/pages/Pacientes/PacienteChat';
-import Doctores from '@/pages/Doctores/Doctores';
 
 import Publicaciones from '@/pages/Publicaciones/Publicaciones';
 
 import Registro from '@/pages/Registro/Registro';
+import RegistroEmpresa from '@/pages/Registro/RegistroEmpresa';
 
 Vue.use(Router);
+
+//952341137  
+
 
 export default new Router({
   routes: [
@@ -37,6 +38,11 @@ export default new Router({
       path: '/error',
       name: 'Error',
       component: ErrorPage,
+    },
+    {
+      path: '/registro',
+      name: 'Registro',
+      component: RegistroEmpresa,
     },
     {
       path: '/app',
@@ -58,11 +64,7 @@ export default new Router({
           name: 'registro',
           component: Registro,
         },
-        {
-          path: 'components/comprobanteslista',
-          name: 'ComprobanteLista',
-          component: ComprobanteLista,
-        },
+      
         // para preventa
         {
           path: 'components/preventas',
@@ -95,11 +97,7 @@ export default new Router({
           name: 'pacienteschat',
           component: PacienteChat
         },
-        {
-          path: 'doctores',
-          name: 'doctores',
-          component: Doctores
-        },
+        
       ],
     },
   ],
