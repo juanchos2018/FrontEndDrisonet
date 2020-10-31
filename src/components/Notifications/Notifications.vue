@@ -5,15 +5,15 @@
         <strong>You have 13 notifications</strong>
       </div>
       <b-button-group id="notification-b-buttons">
-        <b-button variant="default" @click="changeNotificationsTab(1)">Notifications</b-button>
-        <b-button variant="default" @click="changeNotificationsTab(2)">Messages</b-button>
-        <b-button variant="default" @click="changeNotificationsTab(3)">Progress</b-button>
+        <b-button variant="default" @click="changeNotificationsTab(1)">Notificaciones</b-button>
+        <b-button variant="default" @click="changeNotificationsTab(2)">Mensajes</b-button>
+       
       </b-button-group>
     </header>
     <NewNotifictionsList v-if="newNotifications" />
     <NotifictionsList v-else-if="notificationsTabSelected === 1" />
     <Messages v-else-if="notificationsTabSelected === 2" />
-    <Progress v-else-if="notificationsTabSelected === 3" />
+    
     <NotifictionsList v-else/>
     <footer class="cardFooter text-sm card-footer">
       <span class="fs-mini">Synced at: 21 Apr 2014 18:36</span>

@@ -13,12 +13,7 @@
         <!--
         Sing App Vue Dashboard Free Template - Made by <a href="https://flatlogic.com" rel="nofollow noopener noreferrer" target="_blank">Flatlogic</a>
           -->
-          <div class="d-flex flex-row bd-highlight mb-3">        
-          <h5 class="p-2 bd-highlight">Sistema - Aveo </h5>
-          <h5 class="p-2 bd-highlight">Base de Datos :</h5>
-          <h5 class="p-2 bd-highlight" > {{base}} </h5>       
-          
-         </div> 
+         
         </footer>
     </v-touch>
   </div>

@@ -30,7 +30,7 @@
      
    </div> 
    <div class="footer">
-        <b-button variant="primary"  style="display: inline-block;" :disabled="show"   @click="upload">Subir</b-button>     
+        <b-button variant="primary"  style="display: inline-block;margin-top:200px;width:50% "  :disabled="show"   @click="upload">Subir</b-button>     
  
    </div>
    

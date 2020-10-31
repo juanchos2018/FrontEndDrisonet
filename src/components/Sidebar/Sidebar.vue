@@ -27,6 +27,14 @@
             index="publicaciones"
             isHeader
         />
+          <NavLink
+            :activeItem="activeItem"
+            header="Lista"
+            link="/app/publicacioneslista"
+            iconName="flaticon-home"
+            index="publicacioneslista"
+            isHeader
+        />
 
           |<NavLink
             :activeItem="activeItem"

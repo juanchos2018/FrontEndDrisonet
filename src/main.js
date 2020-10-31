@@ -10,18 +10,20 @@ import Widget from './components/Widget/Widget';
 import axios from 'axios';
 import { moneyfiltro } from '@/filters'
 import { VueSpinners } from '@saeris/vue-spinners'
-
+import Chartkick from 'vue-chartkick'
+import Chart from 'chart.js'
 
 Vue.use(BootstrapVue);
 Vue.use(VueSpinners)
 Vue.use(VueTouch);
+Vue.use(Chartkick.use(Chart))
 
 Vue.component('Widget', Widget);
 Vue.use(require('vue-moment'));
 Vue.filter('moneyfiltro', moneyfiltro)
 
 //Vue.mixin(layoutMixin);
-//Vue.use(Toasted, {duration: 10000});
+//Vue.use(Toasted, {duration: 10000});  https://localhost:44323/
 
 Vue.config.productionTip = false;
 //axios.defaults.baseURL='https://localhost:44358/'

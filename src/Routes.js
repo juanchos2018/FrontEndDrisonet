@@ -13,14 +13,15 @@ import Preventa from '@/pages/Preventa/Preventa';
 import PreventaLista from '@/pages/Preventa/PreventaLista'
 //Articulo
 import Articulo from '@/pages/Articulo/Articulo';
-import Cliente from '@/pages/Cliente/Cliente';
-import Pacientes from '@/pages/Pacientes/Pacientes';
+
 import PacienteChat from '@/pages/Pacientes/PacienteChat';
 
 import Publicaciones from '@/pages/Publicaciones/Publicaciones';
+import PublicacionesLista from '@/pages/Publicaciones/PublicacionesLista';
 
 import Registro from '@/pages/Registro/Registro';
 import RegistroEmpresa from '@/pages/Registro/RegistroEmpresa';
+import Chat from '@/pages/Chat/Chat';
 
 Vue.use(Router);
 
@@ -55,9 +56,19 @@ export default new Router({
           component: AnalyticsPage,
         },
         {
+          path: 'chat',
+          name: 'chat',
+          component: Chat,
+        },
+        {
           path: 'publicaciones',
           name: 'publicaciones',
           component: Publicaciones,
+        },
+        {
+          path: 'publicacioneslista',
+          name: 'publicacioneslista',
+          component: PublicacionesLista,
         },
         {
           path: 'registro',
@@ -81,17 +92,8 @@ export default new Router({
           name: 'Articulo',
           component: Articulo,
         },
-        {
-          path: 'clientes',
-          name: 'cliente',
-          component: Cliente
-        },
-        //dentartDoctores
-        {
-          path: 'pacientes',
-          name: 'pacientes',
-          component: Pacientes
-        },
+       
+       
         {//  path: 'components/comprobantesdetalle/:id',
           path: 'pacienteschat/:id_usuario',
           name: 'pacienteschat',

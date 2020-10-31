@@ -45,10 +45,12 @@ export default {
         this.data.message = '';
         firebase.database().ref('Notificaciones').on('value', (data) => {
           this.chats = [];
+          this.notificaciones=[];
           data.forEach((doc) => {
             let item = doc.val()
             item.key = doc.key
             this.notificaciones.push(item)
+            console.log(data)
           });
 
 
@@ -56,8 +58,8 @@ export default {
   },
   methods:{
       detalle(id_usuario){
-        console.log(id_usuario)
-            this.$router.push('/app/pacienteschat/'+id_usuario);
+        
+            this.$router.push('/app/chat/');
       },  
       onSubmit (evt) {
           evt.preventDefault()
