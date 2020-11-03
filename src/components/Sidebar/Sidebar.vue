@@ -6,7 +6,7 @@
         @mouseleave="sidebarMouseLeave"
     >
       <header class="logo">
-         <img src="../../assets/logo/logo_hotel.jpg" width="50%" alt=""><br>       
+         <img src="../../assets/imgtaxi.png" width="50%" alt=""><br>       
           <span class="primary-word"  >  Drisonet  </span>
       </header>
       <ul class="nav">

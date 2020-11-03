@@ -1,6 +1,62 @@
 <template>
-  <div>
-    <b-col cols="12">
+  <b-container class="bv-example-row">
+  <b-row>
+    <b-col col lg="4">
+ 
+ <Widget >
+<section data-v-44188131="" class="chat-section personal-chats mb-0 d-none d-lg-block">
+  <h5 data-v-44188131="">chat  </h5>
+
+
+<ul data-v-44188131="" class="chat-list">
+  <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item">
+    <div data-v-ef00655e="" class="chat-list-item-wrapper">
+      <div data-v-482edba4="" data-v-ef00655e="" class="avatar mr-3" style="height: 45px; width: 45px; min-width: 45px;">
+       <div data-v-482edba4="" class="image-wrapper" style="font-size: 15px;">
+        <img data-v-482edba4="" width="40px" src="../../assets/people/a5.jpg"></div>
+        <span data-v-482edba4="" class="status bg-success"></span>
+        </div>
+          <section data-v-ef00655e="" class="chat-item-main">
+            <header data-v-ef00655e="" class="d-flex align-items-center justify-content-between mb-1">
+         <h6 data-v-ef00655e="" class="chat-title"><!---->
+            juan carlos
+            <!----></h6><span data-v-ef00655e="" class="ml-auto timestamp">
+            2 Nov
+          </span></header><p data-v-ef00655e="" class="chat-last-message">
+            <span data-v-ef00655e="" class="owner-indicator mr-1">
+            You:
+          </span><!---->
+          mensaje
+        </p></section>
+        </div>
+     </li>
+      <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item">
+        <div data-v-ef00655e="" class="chat-list-item-wrapper">
+          <div data-v-482edba4="" data-v-ef00655e="" class="avatar mr-3" style="height: 45px; width: 45px; min-width: 45px;">
+            <div data-v-482edba4="" class="image-wrapper" style="font-size: 15px;"> 
+              <img data-v-482edba4="" width="40px" class="rounded-circle" src="../../assets/people/a5.jpg" alt="..." /> 
+              </div><!----></div>
+              <section data-v-ef00655e="" class="chat-item-main">
+              <header data-v-ef00655e="" class="d-flex align-items-center justify-content-between mb-1">
+             <h6 data-v-ef00655e="" class="chat-title">
+          Pedro
+          <!----></h6><span data-v-ef00655e="" class="ml-auto timestamp">
+          31 Oct
+          </span></header><p data-v-ef00655e="" class="chat-last-message">
+          If it takes long you can mail m...
+        </p>
+        </section>
+        </div>
+       </li>
+      </ul>
+      </section>
+
+     </Widget>
+
+    </b-col>
+    <b-col>
+
+ <b-col cols="12">
       <h2>
         {{roomname}}
         <b-link @click="exitChat()">Chat</b-link>
@@ -40,7 +96,9 @@
         </b-form>
       </footer>
     </b-col>
-  </div>
+    </b-col>   
+  </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -220,3 +278,5 @@ export default {
     border-top: solid 1px #efefef;
   }
 </style>
+
+<style src="./chat.scss" lang="scss" scoped/>

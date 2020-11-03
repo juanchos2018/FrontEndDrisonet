@@ -1,0 +1,47 @@
+.chat-list-section .personal-chats[data-v-44188131] {
+    overflow: auto;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.chat-page .chat-section {
+    -webkit-box-shadow: var(--widget-shadow);
+    box-shadow: var(--widget-shadow);
+    border-radius: .5rem;
+    background: #fff;
+    padding: 21px;
+    margin-bottom: 1rem;
+}
+.mb-0, .mb-n-0 {
+    margin-bottom: 0;
+}
+.mb-0, .my-0 {
+    margin-bottom: 0!important;
+}
+
+.d-lg-block {
+    display: block!important;
+}
+.chat-page .chat-section {
+    -webkit-box-shadow: var(--widget-shadow);
+    box-shadow: var(--widget-shadow);
+    border-radius: .5rem;
+    background: #fff;
+    padding: 21px;
+    margin-bottom: 1rem;
+}
+
+.chat-list-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    width: 100px;
+   
+}
+constructed stylesheet
+.chat-info-section, .chat-page .chat-list-section {
+    width: 330px;
+    min-width: 330px;
+    height: 100%;
+}

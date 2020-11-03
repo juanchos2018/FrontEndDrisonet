@@ -11,7 +11,7 @@
         <!-- Fin Menu Opcionesv -->
       </div>
       <div>  
-           <b-card class="mt-3" header="Listado de Publicaciones"             
+          <b-card class="mt-3" header="Listado de Publicaciones"             
             header-text-variant="white"
             header-tag="header"
             header-bg-variant="primary" >     
@@ -20,28 +20,19 @@
             
             </b-form>
         
-             <!-- Listado tabla clienes -->
+             <!-- Listado tabla publicaciones -->
         
             <div class="">
               <b-table hover :items="items" :fields="fields">
-                     
-                      
-                          <template v-slot:cell(acciones)="">
-                        <b-button variant="primary" size="sm" class="m-1">Ver</b-button>
-
-                      </template>
+                 <template v-slot:cell(acciones)="{ item }">
+                    <b-button variant="primary" size="sm" class="m-1" @click="IrSolicitudes(item.key_noticia)"> Ver Solicitudes</b-button>
+                 </template>
               </b-table>
-            </div>
-              
+            </div>              
             <!-- Fin tabla -->
-             </b-card> 
+           </b-card> 
         </div>
       <div>
-
-</div>
-
-<div>
- 
   </div>
  </div>
 </template>
@@ -53,12 +44,15 @@ import axios from  'axios';
      
         data(){
             return{
-                Pagina:1,
-                TamanoPagina:50,
-                TotalRegistros:100,
-                fields: [
-                       
-                          { label:"Titulo", key: 'titulo_noticia', sortable: false },
+               
+                
+                datos:{
+                  key_usuario:'IdEmpresa1',
+                  nombre:'',
+                      
+                },
+                fields: [                       
+                         { label:"Titulo", key: 'titulo_noticia', sortable: false },
                          { label:"DEscripcion", key: 'descripcion_noticia', sortable: false },
                          { label:"FEcha", key: 'fecha_noticia', sortable: false },      
                          { label:"Acciones", key: 'acciones', sortable: false },
@@ -73,27 +67,30 @@ import axios from  'axios';
          this.GetPublicaciones();
         },
 
-        methods:{
-         
+        methods:{         
           GetPublicaciones(){
                   let me = this;
                   axios({
                       method: 'post',
                       url: 'Publicar/GetPublicaciones',
-                     
+                      data:me.datos,                     
                   })
                   .then(response => {
                       console.log(response.data);
-                      me.items = response.data;
-                      
+                      me.items = response.data;                      
 
                   }).catch(function (error) {
                       console.log(error);
-                  });
+              });
           },
-         
-          
- 
+          IrSolicitudes(ed){
+              console.log(ed);
+              var id= String(ed);
+              
+             // var id="1234";
+              this.$router.push({name:"Solicitudes",params:{id} });
+
+          }
     }
 
 }

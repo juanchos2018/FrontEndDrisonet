@@ -7,21 +7,15 @@ import Login from '@/pages/Login/Login';
 import ErrorPage from '@/pages/Error/Error';
 // Main
 import AnalyticsPage from '@/pages/Dashboard/Dashboard';
-
-
-import Preventa from '@/pages/Preventa/Preventa';
-import PreventaLista from '@/pages/Preventa/PreventaLista'
-//Articulo
-import Articulo from '@/pages/Articulo/Articulo';
-
 import PacienteChat from '@/pages/Pacientes/PacienteChat';
-
 import Publicaciones from '@/pages/Publicaciones/Publicaciones';
 import PublicacionesLista from '@/pages/Publicaciones/PublicacionesLista';
 
 import Registro from '@/pages/Registro/Registro';
 import RegistroEmpresa from '@/pages/Registro/RegistroEmpresa';
 import Chat from '@/pages/Chat/Chat';
+
+import Solicitudes from '@/pages/Solicitudes/Solicitudes';
 
 Vue.use(Router);
 
@@ -76,23 +70,13 @@ export default new Router({
           component: Registro,
         },
       
-        // para preventa
+      
+      
         {
-          path: 'components/preventas',
-          name: 'Preventa',
-          component: Preventa,
+          path: 'Solicitudes/:id',
+          name: 'Solicitudes',
+          component: Solicitudes,
         },
-        {
-          path: 'components/preventalista',
-          name: 'PreventaLista',
-          component: PreventaLista,
-        },
-        {
-          path: 'articulos',
-          name: 'Articulo',
-          component: Articulo,
-        },
-       
        
         {//  path: 'components/comprobantesdetalle/:id',
           path: 'pacienteschat/:id_usuario',

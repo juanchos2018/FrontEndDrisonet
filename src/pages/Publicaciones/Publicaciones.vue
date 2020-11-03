@@ -21,14 +21,9 @@
           </b-form-group>
 
               <b-overlay :show="show"  no-wrap>      
-             </b-overlay>
-                   
-          
+             </b-overlay>                            
    </div>
-
-   <div class="form-row" >
-     
-   </div> 
+   
    <div class="footer">
         <b-button variant="primary"  style="display: inline-block;margin-top:200px;width:50% "  :disabled="show"   @click="upload">Subir</b-button>     
  
@@ -46,7 +41,7 @@ export default {
         return{
               
                descripcion:'',
-               IdEmpresa:'Abcd123456',
+               IdEmpresa:'IdEmpresa1',
                NombreEmpresa:'EmpresaTaxi',
                img_empresa:'https://firebasestorage.googleapis.com/v0/b/fir-app-cf755.appspot.com/o/NuevoProducto%2Fimgjuancho.jpg?alt=media&token=b48c6e91-3f3e-4f13-81cc-87d1e6e1908a',
                files: [],
@@ -71,6 +66,7 @@ export default {
             },
             
             upload(){
+              // esto apra subir archivos we
                     this.show = true;
                     let data = new FormData();                
                     for( var i = 0; i < this.files.length; i++ ){
@@ -80,6 +76,7 @@ export default {
                     data.append('nombre_usuario', this.NombreEmpresa)
                     data.append('descripcion_noticia',this.descripcion)
                     data.append('image_empresa',this.img_empresa)
+                    data.append('key_usuario',this.IdEmpresa)
                     let config = {
                       header : {
                       'Content-Type' : 'multipart/form-data'
@@ -88,12 +85,32 @@ export default {
                     axios.post('Publicar/SubirPublicacion', data, config).then(response => {
                          console.log(response);
                          this.show = false;
+                         if (response.status==200){
+                            this.Confirmacion()
+                         }  
+                         
                     }) .catch(function(error){
                         console.log(error)
                          this.show = false;
                         console.log('Error!');
                      });
-                },
+           },
+
+         Notificar(){
+              axios.post('Publicar/Set_Notificar').then(response => {
+                         console.log(response);
+                         this.show = false;
+                    }) .catch(function(error){
+                        console.log(error)
+                         this.show = false;
+                        console.log('Error!');
+              });
+                     
+         },
+
+         Confirmacion(){
+            alert("subido");
+         },
          SubirArchivos(){              
        
             let formData = new FormData();
