@@ -9,20 +9,28 @@
 		<div class="login-content">
 			<form class="mt" @submit.prevent="submit">				
 				<h2 class="title">Registrar</h2>
+				
+				 <div class="div">
+           		   		<input ref="ruc" required type="number" v-model="datos.ruc" name="ruc"  placeholder="Ruc" >
+           		   </div>	
+					  <button type="button" @click="Consultar">consultar</button>
            		<div class="input-div one">
+   	
+
            		   <div class="i">
-           		   		<i class="fas fa-user"></i>
+           		   	<i class="fas fa-user"></i>
            		   </div>
            		   <div class="div">
-           		   		<input ref="email" required type="text" name="email"  placeholder="Correo" >
+           		   		<input ref="email" required type="text"  name="email"  placeholder="Correo" >
+					
            		   </div>
            		</div>
                    <div class="input-div pass">
            		   <div class="i"> 
-           		    	<i class="fas fa-lock"></i>
+           		   <i class="fas fa-lock"></i>
            		   </div>
            		   <div class="div">
-           		    <input  ref="name" required type="text" name="name"   placeholder="Nomnre">
+           		    <input  ref="name" required type="text" v-model="nombre" name="name"   placeholder="Nomnre">
            		    </div>
             	</div>
            		<div class="input-div pass">
@@ -42,7 +50,7 @@
                                 line-height: 20px; 
                                 margin-bottom: 24px;"
                                 >Registrar</b-button>
-                                 <b-button type="button" @click="Login">login</b-button>
+                     <b-button type="button" @click="Login">login</b-button>
             </form>
            
         </div>
@@ -54,20 +62,38 @@
 <script>
 import Widget from '@/components/Widget/Widget';
 import firebase from '@/firebase'
+import axios from  'axios';
 export default {
  
   components: { Widget },
   data() {
     return {
-      errorMessage: null,
+	  errorMessage: null,
+	  datos:{ruc:''},
+	  nombre:'',
     };
   },
   methods: {
     Login()
     {
        this.$router.push('/login')
-    },
-   
+    },   
+    Consultar(){ 
+		 axios({
+                  method: 'post',
+                  url: 'Usuario/ConsultaRuc',
+                  data:this.datos,
+                  })
+                  .then(response => {
+                      
+					   console.log(response)
+					   this.nombre=response.data.nombre;
+                  }).catch(function (error) {
+                      console.log(error);
+                  }) .finally(() => {
+                     
+                  })
+    }
   },
   created() {
    
