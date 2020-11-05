@@ -3,8 +3,7 @@
         
     <div>   
       <div class="row" id="listaproyectos">             
-       <div class="col-4" v-for="item in items" :key="item.key">  
-              
+       <div >                
         <b-card no-body class="overflow-hidden" style="max-width: 340px;"  bg-variant="dark" text-variant="white" footer-tag="footer">
             <b-row no-gutters>
             <b-col md="3">
@@ -16,9 +15,9 @@
             </b-col>
             <b-col md="6">
                 <b-card-body >                   
-                <b-card-title> {{item.nombre}}  </b-card-title>                    
+                <b-card-title> pepepe  </b-card-title>                    
                 <b-card-text>
-                      {{item.dni}}
+                    45442432
                 </b-card-text>                
                 </b-card-body>                
             </b-col>
@@ -31,8 +30,35 @@
                        
                 </template>
         </b-card>
-              </div>
-           </div>
+<br>
+         <b-card no-body class="overflow-hidden" style="max-width: 340px;"  bg-variant="dark" text-variant="white" footer-tag="footer">
+            <b-row no-gutters>
+            <b-col md="3">
+                <div class="UserAvatar__IconImage-hmym9w-1 jtNJTZ" >
+                    <center> 
+                        <img src="../../assets/imgusuario.png" alt="Avatar" class="avatar1">                    
+                    </center>
+                </div>     
+            </b-col>
+            <b-col md="6">
+                <b-card-body >                   
+                <b-card-title> andres  </b-card-title>                    
+                <b-card-text>
+                    45442432
+                </b-card-text>                
+                </b-card-body>                
+            </b-col>
+            </b-row>            
+                <template #footer>
+                    <div style="float:right">
+                         <b-button variant="success" @click="Chat">   respodener</b-button>
+                          <b-button variant="primary" style="margin-left:5px" @click="Detalle" > detalles</b-button>
+                    </div>
+                       
+                </template>
+        </b-card>
+        </div>
+       </div>
     </div>
     </div>
 </template>
@@ -51,7 +77,7 @@ export default {
         }
     },
      mounted(){
-      this.DatosId()
+    
      
     },
     created(){
@@ -93,4 +119,4 @@ export default {
     }
 }
 </script>
-<style src="./stile.scss" lang="scss"  />
+<style src="./taxista.scss" lang="scss"   />

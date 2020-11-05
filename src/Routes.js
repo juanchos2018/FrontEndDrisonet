@@ -16,7 +16,8 @@ import RegistroEmpresa from '@/pages/Registro/RegistroEmpresa';
 import Chat from '@/pages/Chat/Chat';
 
 import Solicitudes from '@/pages/Solicitudes/Solicitudes';
-
+import Taxista from '@/pages/Taxista/Taxista';
+import TaxistaDetalle from '@/pages/Taxista/TaxistaDetalle';
 Vue.use(Router);
 
 //952341137  
@@ -65,13 +66,20 @@ export default new Router({
           component: PublicacionesLista,
         },
         {
-          path: 'registro',
-          name: 'registro',
-          component: Registro,
-        },
-      
-      
-      
+          path: 'taxistas',
+          name: 'taxistas',
+          component: Taxista,
+        },        
+        {
+          path: 'taxistas',
+          name: 'taxistas',
+          component: Taxista,
+        },    
+        {
+          path: 'taxistasdetalle',
+          name: 'taxistasdetalle',
+          component: TaxistaDetalle,
+        },   
         {
           path: 'Solicitudes/:id',
           name: 'Solicitudes',

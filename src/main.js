@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import VueTouch from 'vue-touch';
 import store from './store';
 import router from './Routes';
@@ -12,6 +12,14 @@ import { moneyfiltro } from '@/filters'
 import { VueSpinners } from '@saeris/vue-spinners'
 import Chartkick from 'vue-chartkick'
 import Chart from 'chart.js'
+import VueSweetalert2 from 'vue-sweetalert2'; 
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+
+
+
+Vue.use(BootstrapVueIcons)
+
 
 Vue.use(BootstrapVue);
 Vue.use(VueSpinners)
@@ -21,7 +29,7 @@ Vue.use(Chartkick.use(Chart))
 Vue.component('Widget', Widget);
 Vue.use(require('vue-moment'));
 Vue.filter('moneyfiltro', moneyfiltro)
-
+Vue.use(VueSweetalert2);
 //Vue.mixin(layoutMixin);
 //Vue.use(Toasted, {duration: 10000});  https://localhost:44323/
 

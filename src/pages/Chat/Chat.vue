@@ -7,13 +7,12 @@
 <section data-v-44188131="" class="chat-section personal-chats mb-0 d-none d-lg-block">
   <h5 data-v-44188131="">chat  </h5>
 
-
 <ul data-v-44188131="" class="chat-list">
-  <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item">
+  <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item" @click="chat1">
     <div data-v-ef00655e="" class="chat-list-item-wrapper">
       <div data-v-482edba4="" data-v-ef00655e="" class="avatar mr-3" style="height: 45px; width: 45px; min-width: 45px;">
        <div data-v-482edba4="" class="image-wrapper" style="font-size: 15px;">
-        <img data-v-482edba4="" width="40px" src="../../assets/people/a5.jpg"></div>
+        <img data-v-482edba4="" width="40px" class="rounded-circle" src="../../assets/people/a5.jpg"></div>
         <span data-v-482edba4="" class="status bg-success"></span>
         </div>
           <section data-v-ef00655e="" class="chat-item-main">
@@ -24,13 +23,13 @@
             2 Nov
           </span></header><p data-v-ef00655e="" class="chat-last-message">
             <span data-v-ef00655e="" class="owner-indicator mr-1">
-            You:
+            tu:
           </span><!---->
           mensaje
         </p></section>
         </div>
      </li>
-      <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item">
+      <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item" @click="OtroChat">
         <div data-v-ef00655e="" class="chat-list-item-wrapper">
           <div data-v-482edba4="" data-v-ef00655e="" class="avatar mr-3" style="height: 45px; width: 45px; min-width: 45px;">
             <div data-v-482edba4="" class="image-wrapper" style="font-size: 15px;"> 
@@ -50,7 +49,6 @@
        </li>
       </ul>
       </section>
-
      </Widget>
 
     </b-col>
@@ -71,7 +69,7 @@
             <div v-else>
               <div class="chat-message text-right" v-if="chat.user === nickname">
                 <div class="right-bubble">
-                  <span class="msg-name">Me</span>
+                  <span class="msg-name">yo</span>
                   <span class="msg-date">{{chat.sendDate}}</span>
                   <p text-wrap>{{chat.message}}</p>
                 </div>
@@ -87,14 +85,13 @@
           </b-list-group-item>
         </b-list-group>
       </div>
-      <footer class="sticky-footer">
-        <b-form @submit="onSubmit">
+      <b-form @submit="onSubmit">
           <b-input-group>
-              <b-form-input id="message" v-model.trim="data.message" placeholder="Enter your message"></b-form-input>
-              <b-button type="submit" variant="primary" :disabled="!data.message">Send</b-button>
+              <b-form-input id="message" autocomplete="off" v-model.trim="data.message" placeholder="escribe mensaje"></b-form-input>
+              <b-button type="submit" variant="primary" :disabled="!data.message"> <b-icon icon="arrow-right-circle"></b-icon> </b-button>
           </b-input-group>
         </b-form>
-      </footer>
+    
     </b-col>
     </b-col>   
   </b-row>
@@ -120,7 +117,7 @@ export default {
     }
   },
   created () {
-      
+      /*
     let joinData = firebase.database().ref('chatrooms/'+this.roomid+'/chats').push();
     joinData.set({
       type: 'join',
@@ -128,20 +125,12 @@ export default {
       message: this.nickname+' has joined this room.',
       sendDate: Date()
     });
-    this.data.message = '';
-    firebase.database().ref('chatrooms/'+this.roomid+'/chats').on('value', (snapshot) => {
-      this.chats = [];
-      snapshot.forEach((doc) => {
-        let item = doc.val()
-        item.key = doc.key
-        this.chats.push(item)
-      });
-    });
+    */
+   
   },
   methods: {
     onSubmit (evt) {
         evt.preventDefault()
-
         let newData = firebase.database().ref('chatrooms/'+this.roomid+'/chats').push();
         newData.set({
             type: 'newmsg',
@@ -151,6 +140,29 @@ export default {
         });
         this.data.message = '';
     },
+    chat1(){
+      this.roomid="222"
+      var ro="222";
+        this.ListarChat(ro)
+    },
+    OtroChat(){
+        //alert("Click");
+        this.roomid="1111"
+        var ro="1111";
+        this.ListarChat(ro)
+    },
+    ListarChat(room){
+         this.data.message = '';
+          firebase.database().ref('chatrooms/'+room+'/chats').on('value', (snapshot) => {
+            this.chats = [];
+            snapshot.forEach((doc) => {
+              let item = doc.val()
+              item.key = doc.key
+              this.chats.push(item)
+            });
+          });
+    },
+
     exitChat () {
       let exitData = firebase.database().ref('chatrooms/'+this.roomid+'/chats').push()
       exitData.set({

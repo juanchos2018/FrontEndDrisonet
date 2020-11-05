@@ -3,7 +3,7 @@
         <div>
           <!-- Menu Opciones -->
         <b-nav pills>
-           <b-button type="button"  class="m-1 p-2 px-4 btn-xs" variant="primary" > 
+           <b-button type="button"  class="m-1 p-2 px-4 btn-xs" @click="Nuevo" variant="primary" > 
             <i class="fa fa-plus-circle"></i> Nuevo
          </b-button>
           
@@ -52,9 +52,10 @@ import axios from  'axios';
                       
                 },
                 fields: [                       
-                         { label:"Titulo", key: 'titulo_noticia', sortable: false },
-                         { label:"DEscripcion", key: 'descripcion_noticia', sortable: false },
-                         { label:"FEcha", key: 'fecha_noticia', sortable: false },      
+                         { label:"Titulo", key: 'titulo', sortable: false },
+                         { label:"Descripcion", key: 'descripcion_noticia', sortable: false },
+                         { label:"Fecha", key: 'fecha_noticia', sortable: false },    
+                         { label:"Cantidad", key: 'contador', sortable: false },    
                          { label:"Acciones", key: 'acciones', sortable: false },
                 ],
                 items:[],
@@ -67,7 +68,10 @@ import axios from  'axios';
          this.GetPublicaciones();
         },
 
-        methods:{         
+        methods:{
+          Nuevo(){
+                 this.$router.push({name:"publicaciones"});
+          },        
           GetPublicaciones(){
                   let me = this;
                   axios({

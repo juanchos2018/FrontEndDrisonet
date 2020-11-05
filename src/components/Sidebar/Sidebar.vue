@@ -22,29 +22,20 @@
          <NavLink
             :activeItem="activeItem"
             header="Publicaciones"
-            link="/app/publicaciones"
+            link="/app/publicacioneslista"
             iconName="flaticon-home"
             index="publicaciones"
             isHeader
-        />
+          /> 
           <NavLink
             :activeItem="activeItem"
-            header="Lista"
-            link="/app/publicacioneslista"
+            header="Taxistas"
+            link="/app/taxistas"
             iconName="flaticon-home"
-            index="publicacioneslista"
+            index="taxistas"
             isHeader
-        />
-
-          |<NavLink
-            :activeItem="activeItem"
-            header="Registro"
-            link="/app/registro"
-            iconName="flaticon-home"
-            index="regigstro"
-            isHeader
-        />
-
+          />
+         
 
     
       </ul>

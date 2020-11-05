@@ -3,8 +3,8 @@
     <img class="wave" src="../../assets/wabe2.png">
 	<div class="container" >
 		
-		<div class="img">
-			<img src="../../assets/bg2.svg">
+		<div class="">
+			<img src="../../assets/bg2.svg" width="400px;" style="margin-top:60px">
 		</div>
 		<div class="login-content">
 			<form class="mt" @submit.prevent="submit">
@@ -34,10 +34,12 @@
                                 border-radius: 4px;
                                 font-size: 17px;
                                 font-weight: bold;
-                                line-height: 20px;                             
-                            
+                                line-height: 20px; 
                                 margin-bottom: 24px;"
-                                >Ingresar</b-button>
+                                >
+                                <div class="float-left">
+                          <pulse-loader  v-if="loanding"  color="#F2E6E4" ></pulse-loader>
+                        </div>Ingresar</b-button>
                                  <b-button type="button" @click="Registrar"> Registrar</b-button>
             </form>
 
@@ -97,7 +99,8 @@ export default {
   components: { Widget },
   data() {
     return {
-      errorMessage: null,
+        loanding:false,
+        errorMessage: null,
     };
   },
   methods: {
@@ -106,8 +109,9 @@ export default {
     {
        this.$router.push('/registro')
     },
-submit(){
-  firebase
+  submit(){
+     this.loanding=true;
+    firebase
         .auth()
         .signInWithEmailAndPassword(this.$refs.email.value,this.$refs.password.value)
         .then(data => {
@@ -116,6 +120,7 @@ submit(){
          var verificado=data.user.emailVerified;
          var id =data.user.uid;
               if(verificado){
+                 this.loanding=false;
                    window.localStorage.setItem('authenticated', true);
                    this.$router.push('/app/inicio').catch(err => {
               
@@ -128,12 +133,17 @@ submit(){
               });
               }    
               else{
+                alert("Crreo no verificado");
                 console.log("No existe");
+                 this.loanding=false;
               }      
 
         })
         .catch(err => {
           this.error = err.message;
+              alert("Error en datos");
+                console.log("No existe");
+                 this.loanding=false;
         });
   },
 
