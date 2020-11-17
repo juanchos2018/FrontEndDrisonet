@@ -7,7 +7,7 @@ import Login from '@/pages/Login/Login';
 import ErrorPage from '@/pages/Error/Error';
 // Main
 import AnalyticsPage from '@/pages/Dashboard/Dashboard';
-import PacienteChat from '@/pages/Pacientes/PacienteChat';
+
 import Publicaciones from '@/pages/Publicaciones/Publicaciones';
 import PublicacionesLista from '@/pages/Publicaciones/PublicacionesLista';
 
@@ -86,11 +86,11 @@ export default new Router({
           component: Solicitudes,
         },
        
-        {//  path: 'components/comprobantesdetalle/:id',
-          path: 'pacienteschat/:id_usuario',
-          name: 'pacienteschat',
-          component: PacienteChat
-        },
+      //  {
+        //  path: 'pacienteschat/:id_usuario',
+          //name: 'pacienteschat',
+         // component: PacienteChat
+        //},
         
       ],
     },
