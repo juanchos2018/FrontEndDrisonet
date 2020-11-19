@@ -1,53 +1,33 @@
 <template>
   <b-container class="bv-example-row">
   <b-row>
-    <b-col col lg="4">
- 
+    <b-col col lg="4"> 
  <Widget >
 <section data-v-44188131="" class="chat-section personal-chats mb-0 d-none d-lg-block">
   <h5 data-v-44188131="">chat  </h5>
 
 <ul data-v-44188131="" class="chat-list">
-  <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item" @click="chat1">
+  <li v-for="item in SubChat"  :key="item.key"  data-v-ef00655e="" data-v-44188131="" class="chat-list-item" @click="ListarChat(item.id_usuario)">
     <div data-v-ef00655e="" class="chat-list-item-wrapper">
       <div data-v-482edba4="" data-v-ef00655e="" class="avatar mr-3" style="height: 45px; width: 45px; min-width: 45px;">
        <div data-v-482edba4="" class="image-wrapper" style="font-size: 15px;">
-        <img data-v-482edba4="" width="40px" class="rounded-circle" src="../../assets/people/a5.jpg"></div>
+        <img data-v-482edba4="" width="40px" class="rounded-circle" :src="item.image_usuario"></div>
         <span data-v-482edba4="" class="status bg-success"></span>
         </div>
           <section data-v-ef00655e="" class="chat-item-main">
             <header data-v-ef00655e="" class="d-flex align-items-center justify-content-between mb-1">
          <h6 data-v-ef00655e="" class="chat-title"><!---->
-            juan carlos
+            <strong >{{item.nombre_usuario}}</strong>  
             <!----></h6><span data-v-ef00655e="" class="ml-auto timestamp">
             2 Nov
           </span></header><p data-v-ef00655e="" class="chat-last-message">
-            <span data-v-ef00655e="" class="owner-indicator mr-1">
-            tu:
+            <span data-v-ef00655e="" class="owner-indicator mr-1">         
           </span><!---->
-          mensaje
+          {{item.mensaje}}
         </p></section>
         </div>
-     </li>
-      <li data-v-ef00655e="" data-v-44188131="" class="chat-list-item" @click="OtroChat">
-        <div data-v-ef00655e="" class="chat-list-item-wrapper">
-          <div data-v-482edba4="" data-v-ef00655e="" class="avatar mr-3" style="height: 45px; width: 45px; min-width: 45px;">
-            <div data-v-482edba4="" class="image-wrapper" style="font-size: 15px;"> 
-              <img data-v-482edba4="" width="40px" class="rounded-circle" src="../../assets/people/a5.jpg" alt="..." /> 
-              </div><!----></div>
-              <section data-v-ef00655e="" class="chat-item-main">
-              <header data-v-ef00655e="" class="d-flex align-items-center justify-content-between mb-1">
-             <h6 data-v-ef00655e="" class="chat-title">
-          Pedro
-          <!----></h6><span data-v-ef00655e="" class="ml-auto timestamp">
-          31 Oct
-          </span></header><p data-v-ef00655e="" class="chat-last-message">
-          If it takes long you can mail m...
-        </p>
-        </section>
-        </div>
-       </li>
-      </ul>
+     </li>     
+    </ul>
       </section>
      </Widget>
 
@@ -108,6 +88,7 @@ export default {
   data () {
     return {
         roomid: '222',
+        id_empresa:'IdEmpresa1',
         roomname: 'Chat',
         nickname: 'RadioTaxi',
        img_empresa:'https://firebasestorage.googleapis.com/v0/b/fir-app-cf755.appspot.com/o/NuevoProducto%2Fimgjuancho.jpg?alt=media&token=b48c6e91-3f3e-4f13-81cc-87d1e6e1908a',
@@ -116,48 +97,52 @@ export default {
         data2: { type:'', nombre:'', message:'' },
         chats: [],
         errors: [],
-        offStatus: false
+        SubChat:[],
+        offStatus: false,
+        id_usuario:'',
     }
   },
-  created () {
-   
-   
+  created () {   
+   this.ListarSubChat();
   },
   methods: {
     onSubmit (evt) {
         evt.preventDefault()
-        let newData = firebase.database().ref('chatrooms/'+this.roomid+'/chats').push();
+        let newData = firebase.database().ref('Chat/'+this.id_empresa+'/'+ this.id_usuario).push();
         newData.set({
             type_mensaje: '1',
             nombre: this.nickname,
             mensaje: this.data.message,
-            sendDate: Date(),
-            hora:'10:20',
+           // sendDate: Date(),           
             fotoperfil:this.img_empresa
         });
         this.data.message = '';
     },
-    chat1(){
-      this.roomid="222"
-      var ro="222";
-        this.ListarChat(ro)
-    },
-    OtroChat(){
-        //alert("Click");
-        this.roomid="1111"
-        var ro="1111";
-        this.ListarChat(ro)
-    },
-    ListarChat(room){
+   
+    ListarChat(id_usuario){
          this.data.message = '';
-          firebase.database().ref('chatrooms/'+room+'/chats').on('value', (snapshot) => {
+         this.id_usuario=id_usuario;
+          firebase.database().ref('Chat/'+this.id_empresa+'/'+id_usuario).on('value', (snapshot) => {
             this.chats = [];
             snapshot.forEach((doc) => {
               let item = doc.val()
               item.key = doc.key
               this.chats.push(item)
             });
-          });
+        });
+    },
+    ListarSubChat(){      
+          firebase.database().ref('SubChat/'+this.id_empresa).on('value', (snapshot) => {
+            this.SubChat = [];
+            snapshot.forEach((doc) => {
+              let item = doc.val()
+              item.key = doc.key
+              this.SubChat.push(item)
+            });
+        });
+    },
+    Ver(id){
+      alert(id)
     },
 
     exitChat () {

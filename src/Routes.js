@@ -75,8 +75,8 @@ export default new Router({
           name: 'taxistas',
           component: Taxista,
         },    
-        {
-          path: 'taxistasdetalle',
+        {//  path: 'preventa/PreventaDetalle/:id',
+          path: 'taxistasdetalle/:id_usuario',
           name: 'taxistasdetalle',
           component: TaxistaDetalle,
         },   

@@ -10,15 +10,25 @@
             <b-col md="3">
                 <div class="UserAvatar__IconImage-hmym9w-1 jtNJTZ" >
                     <center> 
-                        <img src="../../assets/imgusuario.png" alt="Avatar" class="avatar1">                    
+                      
+                     <div v-if="item.img_usuario=='default_value'">
+                             <img src="../../assets/imgusuario.png" alt="Avatar" class="avatar1">  
+                            </div>
+                            
+                            <div v-else>
+                                <img :src="item.img_usuario" alt="Avatar" class="avatar1">  
+                              
+                                 
+                            </div>
+                                         
                     </center>
                 </div>     
             </b-col>
             <b-col md="6">
                 <b-card-body >                   
-                <b-card-title> {{item.nombre}}  </b-card-title>                    
+                <b-card-title> {{item.nombre_usuario}}  </b-card-title>                    
                 <b-card-text>
-                      {{item.dni}}
+                      {{item.dni_usuario}}
                 </b-card-text>                
                 </b-card-body>                
             </b-col>
@@ -26,14 +36,14 @@
                 <template #footer>
                     <div style="float:right">
                          <b-button variant="success" @click="Chat">   respodener</b-button>
-                          <b-button variant="primary" style="margin-left:5px" @click="Detalle" > detalles</b-button>
-                    </div>
-                       
+                          <b-button variant="primary" style="margin-left:5px" @click="Detalle(item.id_usuario)" > detalles</b-button>
+                    </div>                       
                 </template>
-        </b-card>
-              </div>
-           </div>
+          </b-card>
+         </div>
+      </div>
     </div>
+
     </div>
 </template>
 
@@ -63,13 +73,15 @@ export default {
             if(id){
                 console.log("recibe we");
                
-               console.log(id);
-                this.ListarSolicutdes(id);
+             
+               this.ListarSolicutdes(id);
             
             }            
          },
-         Detalle(){
-            this.$router.push({name:"taxistasdetalle"});
+         Detalle(id_usuario){
+              //  console.log(id_usuario);
+               // this.$router.push({name:"taxistasdetalle"});
+                  this.$router.push('/app/taxistasdetalle/'+id_usuario);
          },
          Chat(){
                 this.$router.push({name:"chat"});
@@ -83,7 +95,7 @@ export default {
                       data:me.datos,                     
                   })
                   .then(response => {
-                      console.log(response.data);
+                   //   console.log(response.data);
                       me.items = response.data;                      
 
                   }).catch(function (error) {

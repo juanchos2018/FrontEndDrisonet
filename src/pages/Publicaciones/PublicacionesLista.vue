@@ -41,7 +41,7 @@ import axios from  'axios';
         data(){
             return{
                 datos:{
-                  key_usuario:'IdEmpresa1',
+                  id_usuario:'IdEmpresa1',
                   nombre:'',                      
                 },
                 fields: [                       
