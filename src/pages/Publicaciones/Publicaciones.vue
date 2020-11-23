@@ -48,7 +48,7 @@ export default {
                NombreEmpresa:'EmpresaTaxi',
                img_empresa:'https://firebasestorage.googleapis.com/v0/b/fir-app-cf755.appspot.com/o/NuevoProducto%2Fimgjuancho.jpg?alt=media&token=b48c6e91-3f3e-4f13-81cc-87d1e6e1908a',
               
-              files: [],
+               files: [],
                url: null,
                show: false
         }
@@ -59,8 +59,9 @@ export default {
     },
     methods:{             
             handleFileUploads(e){
-                // this.files = this.$refs.files.files;
-                 const file = e.target.files[0];
+                 this.files = this.$refs.files.files;
+               //  const file = e.target.files[0];
+               ///  this.files = e.target.files[0];
                  this.url = URL.createObjectURL(file);
             },            
             upload(){
@@ -85,8 +86,7 @@ export default {
                          this.show = false;
                          if (response.status==200){
                             this.Confirmacion()
-                         }  
-                         
+                         }                           
                     }) .catch(function(error){
                         console.log(error)
                          this.show = false;

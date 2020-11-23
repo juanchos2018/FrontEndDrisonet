@@ -8,12 +8,15 @@
 									<h5 class="card-title mb-0">Perfil </h5>
 								</div>
 								<div class="card-body text-center">
-									<img :src="img_usuario" alt="Christina Mason" class="img-fluid rounded-circle mb-1" width="128" height="138" />
+								
+									<img  v-if="img_usuario=='default_image'" src="../../assets/imgusuario.png" alt="Christina Mason" class="img-fluid rounded-circle mb-1" width="128" height="138" />
+								
+									<img   v-else :src="img_usuario" alt="Christina Mason" class="img-fluid rounded-circle mb-1" width="128" height="138" />
+								
 									<h5 class="card-title mb-0">{{nombre_usuario}}</h5>
 									<div class="text-muted mb-2">Taxista</div>
 
-									<div>
-										
+									<div>										
 										<a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Mensaje</a>
 									</div>
 								</div>
@@ -22,8 +25,6 @@
 									<h5 class="h6 card-title">Informacion</h5>
 									<ul class="list-unstyled mb-0">
 										<li class="mb-1"><span data-feather="home" class="feather-sm mr-1"></span> Correo : <h5>{{correo_usuario}}</h5></li>
-
-										
 										<li class="mb-1"><span data-feather="map-pin" class="feather-sm mr-1">Dni : </span> <h5>{{dni_usuario}}</h5></li>
 									</ul>
 								</div>
@@ -32,8 +33,7 @@
 								<hr class="my-0" />
 								<div class="card-body">
 									<h5 class="h6 card-title">Redes Sociales</h5>
-									<ul class="list-unstyled mb-0">
-									
+									<ul class="list-unstyled mb-0">									
 										<li class="mb-1"><span class="fab fa-facebook fa-fw mr-1"></span> <a href="#">Facebook</a></li>
 										<li class="mb-1"><span class="fab fa-instagram fa-fw mr-1"></span> <a href="#">Instagram</a></li>
 										<li class="mb-1"><span class="fab fa-linkedin fa-fw mr-1"></span> <a href="#">LinkedIn</a></li>
@@ -45,38 +45,25 @@
 						<div class="col-md-8 col-xl-9">
 							<div class="card">
 								<div class="card-header">
-
-									<h5 class="card-title mb-0">Informacion Laboral</h5>
+									<h5 class="card-title mb-0">Informacion MTC</h5>
 								</div>
-								<div class="card-body h-100">
+								<div class="card-body h-100" v-for="item in papeletas" :key="item.key">
 
 									<div class="d-flex align-items-start">
-										<img :src="img_usuario" width="36" height="36" class="rounded-circle mr-2" alt="Vanessa Tucker">
+
+										<img  v-if="img_usuario=='default_image'" src="../../assets/imgusuario.png" alt="Christina Mason" class="rounded-circle mr-2" width="36" height="36" />
+										<img   v-else :src="img_usuario" alt="Christina Mason" class="rounded-circle mr-2" width="36" height="36" />
+								
 										<div class="flex-grow-1">
-											<small class="float-right text-navy">5m ago</small>
-											<strong>PEpe </strong> started following <br />
-											<small class="text-muted">Today 7:51 pm</small><br />
+											<small class="float-right text-navy">{{item.fecha}}</small>
+											<strong>{{item.conductor}} </strong>  <br />
+											<small class="text-muted">{{item.estado_deuda}}</small><br />
 										</div>
-									</div>
-
+									</div>	
 									<hr />
-									<div class="d-flex align-items-start">
-										<img src="../../assets/imgusuario.png" width="36" height="36" class="rounded-circle mr-2" alt="Charles Hall">
-										<div class="flex-grow-1">
-											<small class="float-right text-navy">30m ago</small>
-											<strong>Pepe</strong> papeleta<br />
-											<small class="text-muted">Today 7:21 pm</small>
-
-											<div class="border text-sm text-muted p-2 mt-1">
-											Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae officia architecto quis odio provident, voluptates libero molestias eveniet iste? Cupiditate quasi nihil consequuntur eaque reiciendis reprehenderit eligendi voluptatem quisquam nam?
-											</div>
-
-										</div>
-									</div>								
-									<hr />
-                                    <br>
-									<a href="#" class="btn btn-primary btn-block" v-b-modal.modalPopover >Reponder</a>
+                                    <br>									
 								</div>
+								<a href="#" class="btn btn-primary btn-block" v-b-modal.modalPopover >Reponder</a>
 							</div>
 						</div>
 				</div>
@@ -84,25 +71,25 @@
 			</div>
 
 			
-			<b-modal id="modalPopover" title="REsponder" ok-only>
+			<b-modal id="modalPopover" title="Responder" ok-only>
 				
 			  <b-card>				
 				<b-card-text>
 					YA no Necesitamos
 				</b-card-text>
-			  <b-button squared variant="primary" @click="Rechazado" >Enviar</b-button>
+			  <b-button squared variant="danger" style="float:right" @click="Rechazado" >Rechazar</b-button>
 				</b-card>
 				 <b-card>				
 			<b-card-text>
 					LLamanos para Cordinar
 				</b-card-text>			
-				  <b-button squared variant="primary" @click="Oportunidad">Enviar</b-button>
+				  <b-button squared variant="primary"  style="float:right" @click="Oportunidad">Coordinar</b-button>
 			</b-card>
 			 <b-card>				
 			<b-card-text>
 					Te estamos enviado la Requisitos
 				</b-card-text>			
-				  <b-button squared variant="primary" @click="Aceptado">Enviar</b-button>
+				  <b-button squared variant="success"  style="float:right" @click="Aceptado">Aceptar</b-button>
 			</b-card>
 			</b-modal>
 
@@ -125,7 +112,7 @@ export default {
 		correo_usuario:'',
 		img_empresa:'https://firebasestorage.googleapis.com/v0/b/fir-app-cf755.appspot.com/o/NuevoProducto%2Fimgjuancho.jpg?alt=media&token=b48c6e91-3f3e-4f13-81cc-87d1e6e1908a',
               
-
+		papeletas:[],
 		notificar:{
 			nombre_empresa:'',
 			fecha:'',
@@ -159,12 +146,30 @@ export default {
                       url: 'Usuario/ObtenerUsuario/'+id_usuario,                                       
                   })
                   .then(response => {
-					  console.log(response.data);
+					 // console.log(response.data);
+					 var ruta ="";
 					  me.nombre_usuario=response.data.data.nombre_usuario;
 					  me.dni_usuario=response.data.data.dni_usuario;
-					  me.correo_usuario=response.data.data.correo_usuario;
-					  me.img_usuario=response.data.data.image_usuario;
-					  me.token_usuario=response.data.data.token;                                       
+					  me.correo_usuario=response.data.data.correo_usuario;	
+ 					  me.img_usuario=response.data.data.image_usuario;					
+					  me.token_usuario=response.data.data.token;
+					  me.PapeletasTaxista(id_usuario);                                       
+
+                  }).catch(function (error) {
+                      console.log(error);
+            });
+	   },
+	   PapeletasTaxista(id_usuario)
+	   {
+		    let me = this;					        
+                  axios({
+                      method: 'get',
+                      url: 'Papeleta/ObtenerPapeleta/'+id_usuario,                                       
+                  })
+                  .then(response => {
+					  console.log(response.data);
+					  me.papeletas=response.data;
+					                                     
 
                   }).catch(function (error) {
                       console.log(error);
