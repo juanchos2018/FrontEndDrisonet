@@ -35,8 +35,9 @@
 <script>
 
 import axios from  'axios';
+import firebase from '@/firebase'
 
-    export default{
+ export default{
      
         data(){
             return{
@@ -57,7 +58,18 @@ import axios from  'axios';
             }
         },
         created () {
-         this.GetPublicaciones();
+            firebase.auth().onAuthStateChanged(user =>  {
+            if (user) {          
+            //  this.NombreUsuario=user.displayName;
+              this.datos.id_usuario=user.uid;        
+             
+              this.GetPublicaciones();
+
+            } else {       
+              console.log("no logueado")
+            }
+            });
+            
         },
 
         methods:{

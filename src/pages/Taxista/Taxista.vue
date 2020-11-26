@@ -3,7 +3,7 @@
         
     <div>   
       <div class="row" id="listaproyectos">             
-       <div >                
+       <div  class="col-4" >                
         <b-card no-body class="overflow-hidden" style="max-width: 340px;"  bg-variant="dark" text-variant="white" footer-tag="footer">
             <b-row no-gutters>
             <b-col md="3">

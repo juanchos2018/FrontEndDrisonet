@@ -13,9 +13,14 @@ import Chart from 'chart.js'
 import VueSweetalert2 from 'vue-sweetalert2'; 
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+import VueFileAgent from 'vue-file-agent';
+import VueFileAgentStyles from 'vue-file-agent/dist/vue-file-agent.css';
+
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
+
+Vue.use(VueFileAgent);
 Vue.use(BootstrapVueIcons)
-
-
 Vue.use(BootstrapVue);
 Vue.use(VueSpinners)
 Vue.use(VueTouch);

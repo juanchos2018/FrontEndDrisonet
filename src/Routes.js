@@ -51,7 +51,7 @@ export default new Router({
           component: AnalyticsPage,
         },
         {
-          path: 'chat',
+          path: 'chat/:id_usuario',
           name: 'chat',
           component: Chat,
         },

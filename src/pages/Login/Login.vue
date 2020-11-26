@@ -27,10 +27,8 @@
            		    		<input  ref="password" required type="password" name="password"   placeholder="Contraseña">
            		    
             	   </div>
-            	</div>
-            	
-            	  <b-button  type="submit"  style="  padding: 10px 10px 10px;
-                            
+            	</div>            	
+            	  <b-button  type="submit"  style="  padding: 10px 10px 10px;                            
                                 border-radius: 4px;
                                 font-size: 17px;
                                 font-weight: bold;
@@ -38,9 +36,9 @@
                                 margin-bottom: 24px;"
                                 >
                                 <div class="float-left">
-                          <pulse-loader  v-if="loanding"  color="#F2E6E4" ></pulse-loader>
-                        </div>Ingresar</b-button>
-                                 <b-button type="button" @click="Registrar"> Registrar</b-button>
+                    <pulse-loader  v-if="loanding"  color="#F2E6E4" ></pulse-loader>
+                  </div>Ingresar</b-button>
+                 <b-button type="button" @click="Registrar"> Registrar</b-button>
             </form>
 
            
@@ -115,7 +113,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.$refs.email.value,this.$refs.password.value)
         .then(data => {
-         // this.$router.replace({ name: "Dashboard" });
+       
          console.log(data);
          var verificado=data.user.emailVerified;
          var id =data.user.uid;

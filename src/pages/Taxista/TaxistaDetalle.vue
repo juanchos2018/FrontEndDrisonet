@@ -121,6 +121,7 @@ export default {
 			ruta_documento:'',
 			image_empresa:'',
 			id_usuario:'',
+			token:''
 		}
 		}
 	},
@@ -153,6 +154,7 @@ export default {
 					  me.correo_usuario=response.data.data.correo_usuario;	
  					  me.img_usuario=response.data.data.image_usuario;					
 					  me.token_usuario=response.data.data.token;
+					  console.log(response.data);
 					  me.PapeletasTaxista(id_usuario);                                       
 
                   }).catch(function (error) {
@@ -168,9 +170,7 @@ export default {
                   })
                   .then(response => {
 					  console.log(response.data);
-					  me.papeletas=response.data;
-					                                     
-
+					  me.papeletas=response.data;		
                   }).catch(function (error) {
                       console.log(error);
             });
@@ -178,13 +178,15 @@ export default {
 	   Rechazado(){
 			let me =this;
 			 me.notificar.nombre_empresa="RAdioTaxi";
-			 me.notificar.mensaje="Pdoria ser";
-			 me.notificar.detalle="Te Necesitamos";
+			 me.notificar.mensaje="No";
+			 me.notificar.detalle="Para otra ocassion we";
 			 me.notificar.ruta_documento="Htt.RutaDocumento";    
-			 me.notificar.image_empresa=me.img_empresa;           
+			 me.notificar.image_empresa=me.img_empresa;     
+			 me.notificar.token=me.token_usuario;         
              axios.post('Notificacion/Notificar',me.notificar,{ emulateJSON: true})                
                .then(function(response){
-                   console.log(response)
+				   console.log(response)
+				   me.Confirmacion();
                                      
                 }).catch(function(error){
                     console.log(error);
@@ -195,13 +197,14 @@ export default {
 		  let me =this;
 			 me.notificar.nombre_empresa="RAdioTaxi";
 			 me.notificar.mensaje="Pdoria ser";
-			 me.notificar.detalle="Te Necesitamos";
+			 me.notificar.detalle="Te talvez";
 			 me.notificar.ruta_documento="Htt.RutaDocumento";    
-			 me.notificar.image_empresa=me.img_empresa;           
+			 me.notificar.image_empresa=me.img_empresa;    
+			 me.notificar.token=me.token_usuario;             
              axios.post('Notificacion/Notificar',me.notificar,{ emulateJSON: true})                
                .then(function(response){
-                   console.log(response)
-                                     
+				   console.log(response)    
+				     me.Confirmacion();                                 
                 }).catch(function(error){
                     console.log(error);
                      
@@ -210,19 +213,29 @@ export default {
 	   Aceptado(){
 		 let me =this;
 			 me.notificar.nombre_empresa="RAdioTaxi";
-			 me.notificar.mensaje="Pdoria ser";
+			 me.notificar.mensaje="Aceptado we ";
 			 me.notificar.detalle="Te Necesitamos";
 			 me.notificar.ruta_documento="Htt.RutaDocumento";    
-			 me.notificar.image_empresa=me.img_empresa;           
+			 me.notificar.image_empresa=me.img_empresa;    
+			 me.notificar.token=me.token_usuario;           
              axios.post('Notificacion/Notificar',me.notificar,{ emulateJSON: true})                
                .then(function(response){
                    console.log(response)
-                                     
+                    me.Confirmacion();
                 }).catch(function(error){
                     console.log(error);
                      
-             });
-	   }
+            });
+	   },
+	   Confirmacion(){
+              this.$swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Enviado Respuesta ..',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+           },
 	}
 }
 </script>
