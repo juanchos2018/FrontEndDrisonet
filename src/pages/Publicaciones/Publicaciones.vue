@@ -3,7 +3,7 @@
     <div class="form-row">
          <b-form-group    class="col-md-6">
                <label class="control-label font-weight-bold text-info">Titulo </label> 
-              <b-input type="text" ></b-input>
+              <b-input type="text" v-model="titulo" ></b-input>
           </b-form-group>          
    </div>   
    <div class="form-row">
@@ -56,7 +56,9 @@ export default {
       {
        return{              
                descripcion:'',
+               titulo:'',
                IdEmpresa:'',
+               telefono:'970780836',
                NombreEmpresa:'',
                img_empresa:'https://firebasestorage.googleapis.com/v0/b/fir-app-cf755.appspot.com/o/NuevoProducto%2Fimgjuancho.jpg?alt=media&token=b48c6e91-3f3e-4f13-81cc-87d1e6e1908a',
                files: [],
@@ -100,6 +102,8 @@ export default {
                     data.append('descripcion_noticia',this.descripcion)
                     data.append('image_empresa',this.img_empresa)
                     data.append('key_usuario',this.IdEmpresa)
+                    data.append('titulo',this.titulo)
+                    data.append('telefono',this.telefono)
                     let config = {
                       header : {
                       'Content-Type' : 'multipart/form-data'

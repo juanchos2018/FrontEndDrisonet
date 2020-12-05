@@ -31,7 +31,7 @@
 				</div>
 				<div class="form-group">
 					<label for="inputAddress2">Correo</label>
-					<input type="text"  v-model="Empresa.correo" class="form-control"  >
+					<input type="text"  v-model="Empresa.correo_usuario" class="form-control"  >
 				</div>
 				<div class="form-group">
 					<label for="inputAddress2">Contraseña</label>
@@ -129,7 +129,7 @@ export default {
 				direccion:'',
 				telefono:'',
 				password:'',
-				correo:'',
+				correo_usuario:'',
 				ruc:'',
 				img_usuario:'default_image	'
 				}

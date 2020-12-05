@@ -17,7 +17,8 @@
 									<div class="text-muted mb-2">Taxista</div>
 
 									<div>										
-										<a class="btn btn-primary btn-sm" href="#"><span data-feather="message-square"></span> Mensaje</a>
+									
+										<b-button class="btn btn-primary btn-sm" @click="Chat" >Mensaje</b-button>
 									</div>
 								</div>
 								<hr class="my-0" />
@@ -111,7 +112,7 @@ export default {
 		token_usuario:'',
 		correo_usuario:'',
 		img_empresa:'https://firebasestorage.googleapis.com/v0/b/fir-app-cf755.appspot.com/o/NuevoProducto%2Fimgjuancho.jpg?alt=media&token=b48c6e91-3f3e-4f13-81cc-87d1e6e1908a',
-              
+        ruta_documento_doc:'https://firebasestorage.googleapis.com/v0/b/fir-app-cf755.appspot.com/o/Publicaciones%2FDocumentoPlantilla.docx?alt=media&token=fb37a411-75b4-4879-8525-08962b12afa5',      
 		papeletas:[],
 		notificar:{
 			nombre_empresa:'',
@@ -121,7 +122,8 @@ export default {
 			ruta_documento:'',
 			image_empresa:'',
 			id_usuario:'',
-			token:''
+			token:'',
+			estado:''
 		}
 		}
 	},
@@ -132,10 +134,14 @@ export default {
         this.GetDatos()
     },
 	methods:{
-	   GetDatos(){
+		Chat(){
+              
+             this.$router.push('/app/chat/'+this.id_usu);
+		},	
+		 GetDatos(){
 			var item = this.$route.params.id_usuario
 			if(item){   				
-				 
+			    this.id_usu=item;	 
 				this.DatosTaxista(item);  
 			}         
 	   }, 
@@ -154,7 +160,7 @@ export default {
 					  me.correo_usuario=response.data.data.correo_usuario;	
  					  me.img_usuario=response.data.data.image_usuario;					
 					  me.token_usuario=response.data.data.token;
-					  console.log(response.data);
+					
 					  me.PapeletasTaxista(id_usuario);                                       
 
                   }).catch(function (error) {
@@ -180,9 +186,10 @@ export default {
 			 me.notificar.nombre_empresa="RAdioTaxi";
 			 me.notificar.mensaje="No";
 			 me.notificar.detalle="Para otra ocassion we";
-			 me.notificar.ruta_documento="Htt.RutaDocumento";    
+			 me.notificar.ruta_documento="nulo";    
 			 me.notificar.image_empresa=me.img_empresa;     
-			 me.notificar.token=me.token_usuario;         
+			 me.notificar.token=me.token_usuario;      
+			 me.notificar.estado='Rechazado';        
              axios.post('Notificacion/Notificar',me.notificar,{ emulateJSON: true})                
                .then(function(response){
 				   console.log(response)
@@ -198,9 +205,10 @@ export default {
 			 me.notificar.nombre_empresa="RAdioTaxi";
 			 me.notificar.mensaje="Pdoria ser";
 			 me.notificar.detalle="Te talvez";
-			 me.notificar.ruta_documento="Htt.RutaDocumento";    
+			 me.notificar.ruta_documento="nulo";    
 			 me.notificar.image_empresa=me.img_empresa;    
-			 me.notificar.token=me.token_usuario;             
+			 me.notificar.token=me.token_usuario;    
+			 me.notificar.estado='Talvez';          
              axios.post('Notificacion/Notificar',me.notificar,{ emulateJSON: true})                
                .then(function(response){
 				   console.log(response)    
@@ -215,9 +223,10 @@ export default {
 			 me.notificar.nombre_empresa="RAdioTaxi";
 			 me.notificar.mensaje="Aceptado we ";
 			 me.notificar.detalle="Te Necesitamos";
-			 me.notificar.ruta_documento="Htt.RutaDocumento";    
+			 me.notificar.ruta_documento=me.ruta_documento_doc;    
 			 me.notificar.image_empresa=me.img_empresa;    
-			 me.notificar.token=me.token_usuario;           
+			 me.notificar.token=me.token_usuario;     
+		     me.notificar.estado='Aceptado';       
              axios.post('Notificacion/Notificar',me.notificar,{ emulateJSON: true})                
                .then(function(response){
                    console.log(response)
@@ -235,7 +244,7 @@ export default {
                   showConfirmButton: false,
                   timer: 1500
                 })
-           },
+         },
 	}
 }
 </script>
