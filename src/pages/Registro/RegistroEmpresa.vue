@@ -174,13 +174,24 @@ export default {
                   })
                   .then(response => {
                       
-                       console.log(response)
+					   console.log(response)
+					   this.$router.push('/login');
+					   
                   }).catch(function (error) {
                       console.log(error);
                   }) .finally(() => {
                      
                   })
-		}
+		},
+		 Confirmacion(){
+              this.$swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Registrado ..',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+           },
 	},
 	created() {
 	

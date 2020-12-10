@@ -98,14 +98,13 @@ export default {
   methods: {
 
       DatosUsuario(id_usuario){		  
-			 let me = this;
-		          
-                 axios({
-                      method: 'get',
-                      url: 'Usuario/ObtenerUsuario/'+id_usuario,                                       
-                  })
+			 let me = this;		          
+             axios({
+                  method: 'get',
+                  url: 'Usuario/ObtenerUsuario/'+id_usuario,                                       
+               })
                   .then(response => {
-					 // console.log(response.data);
+					    console.log(response.data);
 					 var ruta ="";
 					  me.NombreUsuario=response.data.data.nombre_usuario;
 					 				                                    
